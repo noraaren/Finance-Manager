@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export default function MainPage() {
   const location = useLocation();
-  const { accessToken,publicToken, accountId, institution } = location.state || {};
+  const { accessToken, publicToken, accountId, institution } = location.state || {};
   
   console.log('MainPage component rendered');
   console.log('Location state:', location.state);
@@ -21,7 +21,11 @@ export default function MainPage() {
       <button
         type="button"
         onClick={async () => {
-          const res = await axios.get("http://localhost:3000/api/accounts");
+          const res = await axios.get("http://localhost:3000/api/accounts", {
+            headers: {
+              'Authorization': `Bearer ${accessToken}`
+            }
+          });
           console.log(res.data);
           alert("Fetch data from your backend here");
         }}

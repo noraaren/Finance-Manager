@@ -21,13 +21,17 @@ function StartPage() {
   const { open, ready } = usePlaidLink({
     token: linkToken,
     onSuccess: async (public_token, metadata) => {
+      let tokenFromResponse = null;
       console.log('Plaid Link onSuccess triggered');
       try {
+        
         const response = await axios.post('http://localhost:3000/api/exchange_public_token', {
           publicToken: public_token,
         });
-        setAccessToken(response.data.access_token);
-        console.log(response.data.access_token);
+
+        tokenFromResponse = response.data.access_token;
+        setAccessToken(tokenFromResponse);
+        console.log(tokenFromResponse);
         console.log('Access token set successfully');
       } catch (error) {
         console.error('Error exchanging public token:', error);
@@ -37,7 +41,7 @@ function StartPage() {
       console.log('Navigating to /MainPage...');
       navigate('/MainPage', {
         state: {
-          accessToken,
+          accessToken: tokenFromResponse,
           publicToken: public_token,
           accountId: metadata.account_id,
           institution: metadata.institution?.name,

@@ -83,15 +83,16 @@ app.post('/api/exchange_public_token', async (req, res) => {
 
 app.get('/api/accounts', async function (request, response, next) {
   try {
+    const token = request.headers.authorization?.replace('Bearer ', '');
+    console.log('Received token:', token);
+    
     const accountsResponse = await plaid.accountsGet({
-      access_token: accessToken,
+      access_token: token,
     });
-    console.log(accessToken);
-    prettyPrintResponse(accountsResponse);
     response.json(accountsResponse.data);
   } catch (error) {
-    prettyPrintResponse(error);
-    return response.json(formatError(error.response));
+    console.error('Error:', error);
+    response.status(500).json({ error: 'Failed to get accounts' });
   }
 });
 
