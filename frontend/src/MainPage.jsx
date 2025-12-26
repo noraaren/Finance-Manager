@@ -21,7 +21,7 @@ export default function MainPage() {
       <button
         type="button"
         onClick={async () => {
-          const res = await axios.get("http://localhost:3000/api/accounts", {
+          const res = await axios.get("http://localhost:3000/accounts", {
             headers: {
               'Authorization': `Bearer ${accessToken}`
             }

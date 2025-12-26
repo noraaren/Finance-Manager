@@ -12,7 +12,7 @@ function StartPage() {
 
   useEffect(() => {
     async function fetchLinkToken() {
-      const response = await axios.post('http://localhost:3000/api/create_link_token');
+      const response = await axios.post('http://localhost:3000/token/create_link_token');
       setLinkToken(response.data.link_token);
     }
     fetchLinkToken();
@@ -24,8 +24,8 @@ function StartPage() {
       let tokenFromResponse = null;
       console.log('Plaid Link onSuccess triggered');
       try {
-        
-        const response = await axios.post('http://localhost:3000/api/exchange_public_token', {
+
+        const response = await axios.post('http://localhost:3000/items/exchange_public_token', {
           publicToken: public_token,
         });
 
