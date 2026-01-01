@@ -19,7 +19,6 @@ async function getAccounts(req, res){
 }
 
 
-
 async function getAllAccountBalances(req, res){
     try{
         const token = req.headers.authorization?.replace("Bearer ", "");

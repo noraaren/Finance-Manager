@@ -2,6 +2,7 @@
 const express = require("express");
 const { Products } = require("plaid");
 const plaid = require("../config/plaid");
+const supabase = require("../db/supabaseClient");
 
 const router = express.Router();
 
