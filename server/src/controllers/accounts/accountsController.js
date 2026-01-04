@@ -44,7 +44,7 @@ async function getBalanceForAccount(req, res){
         console.error("Failed to get account balance", error.response?.data || error);
         return res.status(500).json({ error: "Failed to get account balance", details: error.response?.data });
         }
-    }
+}
 
 module.exports = {
         getAccounts,
