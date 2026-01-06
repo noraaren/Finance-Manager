@@ -51,12 +51,13 @@ function StartPage() {
   });
 
   return (
-    <div>
-      <button type="button" onClick={() => open()} disabled={!ready}>
-        Start Plaid
-      </button>
-    </div>
-  );
+            
+            <div>
+              <button type="button" onClick={() => open()} disabled={!ready}>
+                Start Plaid
+              </button>
+            </div>
+    );
 }
 
 export default StartPage;
